@@ -1,13 +1,20 @@
 package snake;
 
-import snake.Snake;
-
+// TODO: add tests for console printing
 public class SnakeTest {
   Snake snake = null;
 
   void test() {
+    boolean allTestsPassed = true;
     snake = new Snake(10, 15);
 
+    allTestsPassed = updateIllegalPositionTest();
+    allTestsPassed = allTestsPassed && moveSnakeTest();
+    allTestsPassed = allTestsPassed && mulStringTest();
+
+    System.out.println(allTestsPassed
+                       ? "All tests passed"
+                       : "Something went wrong");
   }
 
   /**
@@ -18,9 +25,14 @@ public class SnakeTest {
    * @param errorMsg the error message
    * @return returns true if the test has passed
    */
-  boolean testBoolean(boolean expected, boolean gotten, String errorMsg) {
+  boolean testValues(boolean expected, boolean gotten, String errorMsg) {
     if (expected != gotten) {
-      System.out.println("Failed: " + errorMsg + "  ::  expected: " + expected + "  ::  gotten: " + gotten);
+      System.out.println("Failed: " +
+          errorMsg +
+          "  ::  expected: " +
+          expected +
+          "  ::  gotten: " +
+          gotten);
       return false;
     }
 
@@ -28,17 +40,56 @@ public class SnakeTest {
   }
 
   /**
-   * Test the updateIllegalPosition function. The position gets moved inside or outside the
-   * playable area, and then it gets tested if the state is moved back into the legal area.
+   * Test two int values and prints a message in case they are unequal
+   *
+   * @param expected the expected value
+   * @param gotten   the result value
+   * @param errorMsg the error message
+   * @return returns true if the test has passed
+   */
+  boolean testValues(String expected, String gotten, String errorMsg) {
+    if (!expected.equals(gotten)) {
+      System.out.println("Failed: " +
+          errorMsg +
+          "  ::  expected: " +
+          expected +
+          "  ::  gotten: " +
+          gotten);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Test two int values and prints a message in case they are unequal
+   *
+   * @param expected the expected value
+   * @param gotten   the result value
+   * @param errorMsg the error message
+   * @return returns true if the test has passed
+   */
+  boolean testValues(int expected, int gotten, String errorMsg) {
+    if (expected != gotten) {
+      System.out.println("Failed: " +
+          errorMsg +
+          "  ::  expected: " +
+          expected +
+          "  ::  gotten: " +
+          gotten);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Test the updateIllegalPosition function. The position gets moved inside
+   * or outside the playable area, and then it gets tested if the state is
+   * moved back into the legal area. W
    */
   boolean updateIllegalPositionTest() {
     boolean testRes = true;
-
-    testRes = testBoolean(
-        snake.areaX > 8 && snake.areaY > 8,
-        true,
-        "Test if playable area is large enough"
-    );
 
     // test the start position
     testRes = testRes && moveSnakeAndCheckPosition(
@@ -88,10 +139,10 @@ public class SnakeTest {
         false
     );
 
-
     // test random outside playable area
     testRes = testRes && moveSnakeAndCheckPosition(
-        (int) (Math.random() * 100 + snake.areaX), // random number [areaX, areaX + 100)
+        (int) (Math.random() * 100 + snake.areaX),
+        // random number [areaX, areaX + 100)
         (int) (Math.random() * 100 + snake.areaY),
         "Test if random outside position is illegal",
         false
@@ -132,7 +183,7 @@ public class SnakeTest {
     snake.updateIllegalPosition();
 
     // check if state has changed
-    return testBoolean(
+    return testValues(
         expected,
         newPositionX == snake.positionX && newPositionY == snake.positionY,
         testMsg
@@ -140,7 +191,8 @@ public class SnakeTest {
   }
 
   /**
-   * Test the moveSnake function that moves the snake on every render.
+   * Test the moveSnake function that moves the snake on every render. Will
+   * test every 4 direction that the snake can move.
    */
   boolean moveSnakeTest() {
     boolean testRes = true;
@@ -149,20 +201,44 @@ public class SnakeTest {
     snake.positionY = 1;
 
     snake.direction = 'd';
-    this.moveSnakeTest();
-    testRes = testBoolean(true, snake.positionX == 2, "Test move right");
+    snake.moveSnake();
+    testRes = testValues(2, snake.positionX, "Test move right");
 
     snake.direction = 's';
-    this.moveSnakeTest();
-    testRes = testRes && testBoolean(true, snake.positionY == 2, "Test move down");
+    snake.moveSnake();
+    testRes = testRes &&
+        testValues(2, snake.positionY, "Test move down");
 
     snake.direction = 'a';
-    this.moveSnakeTest();
-    testRes = testBoolean(true, snake.positionX == 1, "Test move left");
+    snake.moveSnake();
+    testRes = testValues(1, snake.positionX, "Test move left");
 
     snake.direction = 'w';
-    this.moveSnakeTest();
-    testRes = testRes && testBoolean(true, snake.positionY == 1, "Test move up");
+    snake.moveSnake();
+    testRes = testRes &&
+        testValues(1, snake.positionY, "Test move up");
+
+    return testRes;
+  }
+
+  boolean mulStringTest() {
+    boolean testRes = true;
+
+    testRes = testValues("",
+         snake.mulString("aa", 0),
+        "Test mul string by 0");
+
+    testRes = testRes && testValues("",
+         snake.mulString("aa", -1),
+        "Test mul string by neg number");
+
+    testRes = testRes && testValues("aaaa",
+         snake.mulString("aa", 2),
+        "Test mul string with aa times 2");
+
+    testRes = testRes && testValues("az",
+        snake.mulString("az", 1),
+        "Test mul string with aa times 1");
 
     return testRes;
   }
