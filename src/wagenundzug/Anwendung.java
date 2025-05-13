@@ -1,12 +1,14 @@
 package wagenundzug;
 
 public class Anwendung {
-  public static final String ENV = "production";
+  public static final String ENV = "development";
   // public static final String ENV = "production";
 
   public static void main(String[] args) {
 
     if (ENV == "development") {
+      WagenUndZugTest wagenUndZugTest = new WagenUndZugTest();
+      wagenUndZugTest.teste();
     }
 
     if (ENV == "production") {
@@ -24,10 +26,10 @@ public class Anwendung {
       zug.anhaengen(wagen2);
       zug.anhaengen(wagen3);
 
-      System.out.println(wagen2.getNaechsterWagen().getId());
+      System.out.println(wagen2.getNaechsterWagen());
 
       zug.abhaengen(wagen2);
-      System.out.println(wagen1.getNaechsterWagen().getId());
+      System.out.println(wagen1.getNaechsterWagen());
     }
   }
 }
