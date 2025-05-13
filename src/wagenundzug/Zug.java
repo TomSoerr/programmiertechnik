@@ -54,7 +54,7 @@ public class Zug {
   /**
    * Methode zum Anhängen eines Wagens am Ende des Zuges.
    *
-   * @param neuerWagen
+   * @param neuerWagen Referenz des Wagens, der ans Ende gehängt werden soll.
    */
   public void anhaengen(Wagen neuerWagen) {
     if (ersterWagen == null) {
@@ -83,6 +83,15 @@ public class Zug {
     return naechsterWagen == null ? null : getWagenVorRef(naechsterWagen, ref);
   }
 
+  /**
+   * Methode zum Abhängen eines Wagens vom Zug. Setzt die Referenz
+   * vom abgehängten Wagen zurück auf null. Die nachfolgenden Wagen werden
+   * an den vorherigen Wagen gehängt.
+   *
+   * @param wagen Referenz des Wagens, der abgehängt werden soll.
+   * @exception IllegalArgumentException Wenn das Argument null ist
+   * @return Wahrheitswert, ob etwas abgehängt wurde order nicht
+   */
   public boolean abhaengen(Wagen wagen) {
     // Basisfälle
     if (wagen == null) {
