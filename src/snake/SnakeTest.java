@@ -1,6 +1,5 @@
 package snake;
 
-// TODO: add tests for console printing
 public class SnakeTest {
   Snake snake = null;
 
@@ -15,28 +14,6 @@ public class SnakeTest {
     System.out.println(allTestsPassed
                        ? "All tests passed"
                        : "Something went wrong");
-  }
-
-  /**
-   * Test two boolean values and prints a message in case they are unequal
-   *
-   * @param expected the expected value
-   * @param gotten   the result value
-   * @param errorMsg the error message
-   * @return returns true if the test has passed
-   */
-  boolean testValues(boolean expected, boolean gotten, String errorMsg) {
-    if (expected != gotten) {
-      System.out.println("Failed: " +
-          errorMsg +
-          "  ::  expected: " +
-          expected +
-          "  ::  gotten: " +
-          gotten);
-      return false;
-    }
-
-    return true;
   }
 
   /**
@@ -95,65 +72,75 @@ public class SnakeTest {
     testRes = testRes && moveSnakeAndCheckPosition(
         snake.positionX,
         snake.positionY,
-        "Test if start position is legal",
-        true
+        snake.positionX,
+        snake.positionY,
+        "Test if start position is legal"
     );
 
     // test top left corner
     testRes = testRes && moveSnakeAndCheckPosition(
         0,
         0,
-        "Test if top left corner position is legal",
-        true
+        0,
+        0,
+        "Test if top left corner position is legal"
     );
 
-    // test top left corner
+    // test bottom right corner
     testRes = testRes && moveSnakeAndCheckPosition(
         snake.areaX - 1,
         snake.areaY - 1,
-        "Test if bottom right corner position is legal",
-        true
+        snake.areaX - 1,
+        snake.areaY - 1,
+        "Test if bottom right corner position is legal"
     );
 
     // test random playable area
+    int x = (int) (Math.random() * snake.areaX); // random number [0, areaX)
+    int y = (int) (Math.random() * snake.areaY);
     testRes = testRes && moveSnakeAndCheckPosition(
-        (int) (Math.random() * snake.areaX), // random number [0, areaX)
-        (int) (Math.random() * snake.areaY),
-        "Test if random inside position is legal",
-        true
+        x,
+        y,
+        x,
+        y,
+        "Test if random inside position is legal"
     );
 
     // test top left outside playable area
     testRes = testRes && moveSnakeAndCheckPosition(
         -1,
         -1,
-        "Test if top left outside position is illegal",
-        false
+        0,
+        0,
+        "Test if top left outside position is illegal"
     );
 
     // test bottom right outside playable area
     testRes = testRes && moveSnakeAndCheckPosition(
         snake.areaX,
         snake.areaY,
-        "Test if bottom right outside position is illegal",
-        false
+        snake.areaX - 1,
+        snake.areaY - 1,
+        "Test if bottom right outside position is illegal"
     );
 
     // test random outside playable area
     testRes = testRes && moveSnakeAndCheckPosition(
         (int) (Math.random() * 100 + snake.areaX),
-        // random number [areaX, areaX + 100)
         (int) (Math.random() * 100 + snake.areaY),
-        "Test if random outside position is illegal",
-        false
+        snake.areaX - 1,
+        snake.areaY - 1,
+        "Test if random outside position is illegal"
+
     );
 
     // test random outside playable area
     testRes = testRes && moveSnakeAndCheckPosition(
         (int) (Math.random() * -100), // random number (-100, 0]
         (int) (Math.random() * -100),
-        "Test if random outside position is illegal",
-        false
+        0,
+        0,
+        "Test if random outside position is illegal"
     );
 
     return testRes;
@@ -163,17 +150,20 @@ public class SnakeTest {
    * Changes the position state to test if the updateIllegalPosition()
    * will revert any illegal moves.
    *
-   * @param newPositionX the x position the snake is moved to before the test
-   * @param newPositionY the Y position the snake is moved to before the test
-   * @param testMsg      the message if the test fails
-   * @param expected     if the position is legal
+   * @param newPositionX      the x position the snake is moved to before the test
+   * @param newPositionY      the Y position the snake is moved to before the test
+   * @param expectedPositionX the X position the snake should be after check
+   * @param expectedPositionY the Y position the snake should be after check
+   * @param testMsg           the message if the test fails
    */
   boolean moveSnakeAndCheckPosition(
       int newPositionX,
       int newPositionY,
-      String testMsg,
-      boolean expected
+      int expectedPositionX,
+      int expectedPositionY,
+      String testMsg
   ) {
+    boolean testRes = true;
 
     // update the current state
     snake.positionX = newPositionX;
@@ -182,11 +172,17 @@ public class SnakeTest {
     // call the tested function that uses these states
     snake.updateIllegalPosition();
 
+    testRes = testValues(
+        expectedPositionX,
+        snake.positionX,
+        testMsg + " (X Position)"
+    );
+
     // check if state has changed
-    return testValues(
-        expected,
-        newPositionX == snake.positionX && newPositionY == snake.positionY,
-        testMsg
+    return testRes && testValues(
+        expectedPositionY,
+        snake.positionY,
+        testMsg + " (Y Position)"
     );
   }
 
@@ -225,15 +221,15 @@ public class SnakeTest {
     boolean testRes = true;
 
     testRes = testValues("",
-         snake.mulString("aa", 0),
+        snake.mulString("aa", 0),
         "Test mul string by 0");
 
     testRes = testRes && testValues("",
-         snake.mulString("aa", -1),
+        snake.mulString("aa", -1),
         "Test mul string by neg number");
 
     testRes = testRes && testValues("aaaa",
-         snake.mulString("aa", 2),
+        snake.mulString("aa", 2),
         "Test mul string with aa times 2");
 
     testRes = testRes && testValues("az",
