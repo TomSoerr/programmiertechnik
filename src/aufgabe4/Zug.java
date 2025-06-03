@@ -13,7 +13,7 @@ public class Zug {
    * Um die unterschiedlichen privaten Methoden zu testen, lässt es sich
    * zwischen rekursiv und iterativ wechseln.
    */
-  public static boolean iterativ = true;
+  public static final boolean ITERATIV = true;
 
   /**
    * Gibt den ersten Wagen im Zug zurück.
@@ -63,7 +63,7 @@ public class Zug {
     }
 
     Wagen letzterWagen;
-    if (iterativ) {
+    if (ITERATIV) {
       letzterWagen = getLetzterWagenIter(ersterWagen);
     } else {
       letzterWagen = getLetzterWagenRec(ersterWagen);
@@ -72,6 +72,13 @@ public class Zug {
     letzterWagen.setNaechsterWagen(neuerWagen);
   }
 
+  /**
+   * Suche und gebe den Wagen vor dem ref Wagen zurück.
+   *
+   * @param wagen Aktueller Wagen
+   * @param ref Der nach dem zurückgegebenen Wagen
+   * @return Wagen vor der ref Wagen
+   */
   private Wagen getWagenVorRef(Wagen wagen, Wagen ref) {
     Wagen naechsterWagen = wagen.getNaechsterWagen();
 
