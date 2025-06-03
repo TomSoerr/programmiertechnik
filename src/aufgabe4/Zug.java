@@ -13,7 +13,7 @@ public class Zug {
    * Um die unterschiedlichen privaten Methoden zu testen, lässt es sich
    * zwischen rekursiv und iterativ wechseln.
    */
-  public static String prozess = "iterativ";
+  public static boolean iterativ = true;
 
   /**
    * Gibt den ersten Wagen im Zug zurück.
@@ -63,7 +63,7 @@ public class Zug {
     }
 
     Wagen letzterWagen;
-    if (prozess.equals("iterativ")) {
+    if (iterativ) {
       letzterWagen = getLetzterWagenIter(ersterWagen);
     } else {
       letzterWagen = getLetzterWagenRec(ersterWagen);

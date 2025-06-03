@@ -2,16 +2,14 @@ package aufgabe4;
 
 public class Anwendung {
   // public static final String ENV = "development";
-  public static final String ENV = "production";
+  public static final boolean TESTS = true;
 
   public static void main(String[] args) {
 
-    if (ENV == "development") {
+    if (TESTS) {
       WagenUndZugTest wagenUndZugTest = new WagenUndZugTest();
       wagenUndZugTest.teste();
-    }
-
-    if (ENV == "production") {
+    } else {
       System.out.println("Wagen und Zug Program aufgerufen");
 
       Wagen wagen0 = new Wagen();
