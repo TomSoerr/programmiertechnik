@@ -1,4 +1,4 @@
-package wagenundzug;
+package aufgabe4;
 
 public class Wagen {
 
@@ -21,8 +21,8 @@ public class Wagen {
   /**
    * Konstrukter für einen Wagen. Zählt die Id hoch.
    */
-  Wagen() {
-    id = String.valueOf(idZaehler);
+  public Wagen() {
+    id = "wagen" + idZaehler;
     idZaehler++;
   }
 
@@ -41,6 +41,7 @@ public class Wagen {
    * @param naechsterWagen Die neue Referenz.
    */
   public void setNaechsterWagen(Wagen naechsterWagen) {
+    System.out.println(naechsterWagen);
     this.naechsterWagen = naechsterWagen;
   }
 }

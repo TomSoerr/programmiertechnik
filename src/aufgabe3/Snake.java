@@ -1,4 +1,4 @@
-package snake;
+package aufgabe3;
 
 import java.util.Scanner;
 

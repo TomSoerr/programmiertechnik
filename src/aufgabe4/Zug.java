@@ -1,4 +1,4 @@
-package wagenundzug;
+package aufgabe4;
 
 /**
  * Ein Zug der als Startpunkt für mehrere Wagons genutzt wird
@@ -32,7 +32,7 @@ public class Zug {
    */
   private Wagen getLetzterWagenRec(Wagen wagen) {
     Wagen naechsterWagen = wagen.getNaechsterWagen();
-    return naechsterWagen == null ? wagen : getLetzterWagenRec(naechsterWagen);
+    return (naechsterWagen == null) ? wagen : getLetzterWagenRec(naechsterWagen);
   }
 
   /**

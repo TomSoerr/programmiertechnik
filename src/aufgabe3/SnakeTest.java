@@ -1,4 +1,4 @@
-package snake;
+package aufgabe3;
 
 public class SnakeTest {
   Snake snake = null;

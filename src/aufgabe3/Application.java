@@ -1,4 +1,4 @@
-package snake;
+package aufgabe3;
 
 public class Application {
   public static final String ENV = "development";

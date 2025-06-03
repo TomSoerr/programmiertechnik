@@ -1,4 +1,4 @@
-package wagenundzug;
+package aufgabe4;
 
 public class WagenUndZugTest {
   /**
@@ -82,12 +82,12 @@ public class WagenUndZugTest {
     testErg = testErg && testeRef(
         wagen0,
         wagen1.getNaechsterWagen(),
-        "Teste anhängen von Wage 0");
+        "Teste anhängen von Wagen 0");
 
     testErg = testErg && testeRef(
         wagen1,
         wagen1.getNaechsterWagen().getNaechsterWagen(),
-        "Teste Kreis von Wägen");
+        "Teste Kreis von Wagen");
 
     return testErg;
   }

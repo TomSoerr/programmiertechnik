@@ -1,8 +1,8 @@
-package wagenundzug;
+package aufgabe4;
 
 public class Anwendung {
-  public static final String ENV = "development";
-  // public static final String ENV = "production";
+  // public static final String ENV = "development";
+  public static final String ENV = "production";
 
   public static void main(String[] args) {
 
