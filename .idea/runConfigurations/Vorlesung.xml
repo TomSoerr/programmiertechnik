@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Vorlesung" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="vorlesung.Main" />
-    <module name="programmiertechnik" />
-    <method v="2">
-      <option name="Make" enabled="true" />
-    </method>
-  </configuration>
-</component>
