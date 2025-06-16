@@ -1,6 +1,7 @@
 package aufgabe5;
 
 // TODO Doku
+// test
 
 public class BinaeresGatterOder extends BinaeresGatter {
 
