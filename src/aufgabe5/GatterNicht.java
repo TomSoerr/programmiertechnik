@@ -1,5 +1,8 @@
 package aufgabe5;
 
+/**
+ * Negations-Gatter. Negiert das Eingangsgatter.
+ */
 public class GatterNicht implements Gatter {
   /**
    * Eingangsgatter. Erlaubt nur ein Gatter, weil Negation unär ist.
@@ -29,6 +32,12 @@ public class GatterNicht implements Gatter {
     return !eingang.getOutput();
   }
 
+  /**
+   * Beschreibung der aktuellen Negationsinstanz. Ruft die toString Methode des
+   * Eingangs auf und benutzt die Rückgabe für die Beschreibung.
+   *
+   * @return Beschreibung / Zustand des Gatters inkusive der davor geschalteten
+   */
   @Override
   public String toString() {
     return "(¬ " + eingang + ")";

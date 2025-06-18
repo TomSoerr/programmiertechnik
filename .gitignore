@@ -29,5 +29,4 @@ bin/
 .DS_Store
 /.idea/dictionaries/*.xml
 
-/src/test
 /src/vorlesung

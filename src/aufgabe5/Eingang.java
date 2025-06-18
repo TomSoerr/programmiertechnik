@@ -25,6 +25,11 @@ public class Eingang implements Gatter{
     return wert;
   }
 
+  /**
+   * Beschreibung der aktuellen Eingangsinstanz.
+   *
+   * @return Zustand des Eingangs WAHR | FALSCH
+   */
   @Override
   public String toString() {
     return wert ? "WAHR" : "FALSCH";

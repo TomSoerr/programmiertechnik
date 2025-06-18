@@ -2,7 +2,7 @@ package aufgabe5;
 
 /**
  * Logisches Gatter. Hat beliebige Anzahl an Eingängen. Eingänge sind ebenfalls
- * Gatter. So können mehrere Hatter hintereinader geschaltet werden.
+ * Gatter. So können mehrere Gatter hintereinader geschaltet werden.
  */
 public interface Gatter {
   /**
@@ -14,7 +14,8 @@ public interface Gatter {
   boolean getOutput();
 
   /**
-   * Sinnvolle Beschreibung der Instanz.
+   * Sinnvolle Beschreibung der Instanz. Ruf rekursiv die davor geschalteten
+   * Gatter mit auf.
    *
    * @return Beschreibung des Zustandes
    */
