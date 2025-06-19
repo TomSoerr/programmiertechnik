@@ -5,6 +5,7 @@ public abstract class BinaeresGatter implements Gatter {
    * Eingänge-Gatter als Array. Länge 2.
    */
   private final Gatter[] eingaenge = new Gatter[2];
+  // wie lässt sich die länge sonst festlegen?
 
   /**
    * Konstruktor setzt die beiden Eingänge des BinärenGatters.
