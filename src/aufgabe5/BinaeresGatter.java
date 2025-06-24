@@ -4,7 +4,7 @@ public abstract class BinaeresGatter implements Gatter {
   /**
    * Eingänge-Gatter als Array. Länge 2.
    */
-  private final Gatter[] eingaenge = new Gatter[2];
+  private final Gatter[] eingaenge ;
   // wie lässt sich die länge sonst festlegen?
 
   /**
@@ -17,9 +17,7 @@ public abstract class BinaeresGatter implements Gatter {
     if (gatterEins == null || gatterZwei == null) {
       throw new IllegalArgumentException("Eingabegatter müssen Objekte sein");
     }
-
-    eingaenge[0] = gatterEins;
-    eingaenge[1] = gatterZwei;
+    eingaenge = new Gatter[]{gatterEins, gatterZwei};
   }
 
   /**

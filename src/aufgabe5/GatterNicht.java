@@ -7,7 +7,7 @@ public class GatterNicht implements Gatter {
   /**
    * Eingangsgatter. Erlaubt nur ein Gatter, weil Negation unär ist.
    */
-  private Gatter eingang;
+  private final Gatter eingang;
 
   /**
    * Konstruktor für das NOT-Gatter.

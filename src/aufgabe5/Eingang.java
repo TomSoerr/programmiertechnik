@@ -1,6 +1,6 @@
 package aufgabe5;
 
-public class Eingang implements Gatter{
+public class Eingang implements Gatter {
   /**
    * Konstanter Wert des Eingangsgatters
    */

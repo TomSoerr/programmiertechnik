@@ -41,9 +41,9 @@ public class Brettspielsammlung {
     // Länge der Sammlung überprüfen und ggf. anpassen
     if (anzahlBrettspiele >= brettspielsammlung.length) {
       // überprüfe, auf Multiplikation mit Null.
-      int newLength = (brettspielsammlung.length == 0)
-                      ? 1
-                      : brettspielsammlung.length * 2;
+      int
+          newLength =
+          (brettspielsammlung.length == 0) ? 1 : brettspielsammlung.length * 2;
       brettspielsammlung = Arrays.copyOf(brettspielsammlung, newLength);
     }
 
@@ -79,6 +79,20 @@ public class Brettspielsammlung {
     }
 
     // nachrücken
+    //    Brettspiel[]
+    //        tempBrettspielsammlung =
+    //        new Brettspiel[brettspielsammlung.length];
+    //
+    //    int entfernen = 1;
+    //    System.arraycopy(brettspielsammlung, 0, tempBrettspielsammlung, 0, index);
+    //    System.arraycopy(brettspielsammlung,
+    //        index + 1,
+    //        tempBrettspielsammlung,
+    //        index,
+    //        tempBrettspielsammlung.length - index - 1);
+    //
+    //    brettspielsammlung = tempBrettspielsammlung;
+
     for (int i = index; i < anzahlBrettspiele - 1; i++) {
       brettspielsammlung[i] = brettspielsammlung[i + 1];
     }
