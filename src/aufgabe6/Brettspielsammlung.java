@@ -64,7 +64,7 @@ public class Brettspielsammlung {
    * @param brettspiel Brettspiel, welches Entfernt werden sollen (null nicht
    *                   erlaubt)
    */
-  public void entfernen(Brettspiel brettspiel) {
+  public Brettspielsammlung entfernen(Brettspiel brettspiel) {
     if (brettspiel == null) {
       throw new IllegalArgumentException(
           "brettspiel muss ein Brettspiel Objekt sein");
@@ -75,23 +75,8 @@ public class Brettspielsammlung {
 
     // wenn Brettspiel nicht in Sammlung dann passiert nichts
     if (index == -1) {
-      return;
+      return this;
     }
-
-    // nachrücken
-    //    Brettspiel[]
-    //        tempBrettspielsammlung =
-    //        new Brettspiel[brettspielsammlung.length];
-    //
-    //    int entfernen = 1;
-    //    System.arraycopy(brettspielsammlung, 0, tempBrettspielsammlung, 0, index);
-    //    System.arraycopy(brettspielsammlung,
-    //        index + 1,
-    //        tempBrettspielsammlung,
-    //        index,
-    //        tempBrettspielsammlung.length - index - 1);
-    //
-    //    brettspielsammlung = tempBrettspielsammlung;
 
     for (int i = index; i < anzahlBrettspiele - 1; i++) {
       brettspielsammlung[i] = brettspielsammlung[i + 1];
@@ -102,6 +87,8 @@ public class Brettspielsammlung {
 
     // Anzahl der Brettspiele anpassen
     anzahlBrettspiele -= 1;
+
+    return this;
   }
 
   /**
