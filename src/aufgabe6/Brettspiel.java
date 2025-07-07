@@ -82,7 +82,7 @@ public class Brettspiel {
    * Gibt eine formatierte Beschreibung des Brettspiels auf der Konsole aus.
    */
   public void ausgeben() {
-    System.out.format("%s (%d-%d Spieler:innen, ab %d Jahren)",
+    System.out.format("%s (%d-%d Spieler:innen, ab %d Jahren)\n",
         titel,
         spielerzahl[0],
         spielerzahl[1],
